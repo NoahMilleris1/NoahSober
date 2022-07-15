@@ -1,0 +1,118 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+
+  one:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [0,1,2,3,4,5]
+    steps:
+      - uses: actions/checkout@v3
+      - name: BULID TESTING
+        run: ./Build.ps1 -RunAsAdmin
+         
+  two:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [0,1,2,3,4,5]
+    steps:
+      - uses: actions/checkout@v3
+      - name: ROT TESTING
+        run: ./Build.ps1 -RunAsAdmin
+        
+  three:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [0,1,2,3,4,5]
+    steps:
+      - uses: actions/checkout@v3
+      - name: RUN a Line PUSH
+        run: ./Build.ps1 -RunAsAdmin
+
+
+
+  four:
+    needs: [one, two, three]
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [0,1,2,3,4,5]
+    steps:
+      - uses: actions/checkout@v3
+      - name: BULID TESTING
+        run: ./Build.ps1 -RunAsAdmin
+         
+  five:
+    needs: [one, two, three]
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [0,1,2,3,4,5]
+    steps:
+      - uses: actions/checkout@v3
+      - name: ROT TESTING
+        run: ./Build.ps1 -RunAsAdmin
+        
+  six:
+    needs: [one, two, three]
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [0,1,2,3,4,5]
+    steps:
+      - uses: actions/checkout@v3
+      - name: RUN a Line PUSH
+        run: ./Build.ps1 -RunAsAdmin
+
+  seven:
+    needs: [four, five, six]
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [0,1,2,3,4,5]
+    steps:
+      - uses: actions/checkout@v3
+      - name: BULID TESTING
+        run: ./Build.ps1 -RunAsAdmin
+         
+  eight:
+    needs: [four, five, six]
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [0,1,2,3,4,5]
+    steps:
+      - uses: actions/checkout@v3
+      - name: ROT TESTING
+        run: ./Build.ps1 -RunAsAdmin
+        
+  nine:
+    needs: [four, five, six]
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [0,1,2,3,4,5]
+    steps:
+      - uses: actions/checkout@v3
+      - name: RUN a Line PUSH
+        run: ./Build.ps1 -RunAsAdmin

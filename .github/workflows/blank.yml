@@ -43,7 +43,7 @@ jobs:
       - name: RUN a Line PUSH
         run: ./Build.ps1 -RunAsAdmin
 
-
+#STAGE ONE COMPLETED
 
   four:
     needs: [one, two, three]
@@ -81,6 +81,8 @@ jobs:
       - name: RUN a Line PUSH
         run: ./Build.ps1 -RunAsAdmin
 
+#STAGE COMPLETED
+
   seven:
     needs: [four, five, six]
     runs-on: windows-latest
@@ -107,6 +109,44 @@ jobs:
         
   nine:
     needs: [four, five, six]
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [0,1,2,3,4,5]
+    steps:
+      - uses: actions/checkout@v3
+      - name: RUN a Line PUSH
+        run: ./Build.ps1 -RunAsAdmin
+
+#STAGE COMPLETED
+
+  ten:
+    needs: [seven, eight, nine]
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [0,1,2,3,4,5]
+    steps:
+      - uses: actions/checkout@v3
+      - name: BULID TESTING
+        run: ./Build.ps1 -RunAsAdmin
+         
+  eleven:
+    needs: [seven, eight, nine]
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [0,1,2,3,4,5]
+    steps:
+      - uses: actions/checkout@v3
+      - name: ROT TESTING
+        run: ./Build.ps1 -RunAsAdmin
+        
+  twelve:
+    needs: [seven, eight, nine]
     runs-on: windows-latest
     strategy:
       fail-fast: false

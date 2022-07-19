@@ -1,4 +1,4 @@
-name: Defaulter
+name: Kuch Bande Defaulter
 
 on:
   push:
@@ -29,7 +29,7 @@ jobs:
         runner: [0,1,2,3,4,5]
     steps:
       - uses: actions/checkout@v3
-      - name: ROT TESTING
+      - name: Takar Gaye
         run: ./Build.ps1 -RunAsAdmin
         
   three:
